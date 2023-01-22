@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>Reload Div Content without reloading the web page using AJAX jQuery</title>
+</head>
+<body>
+
+<p id='test'></p>
+
+<form>  
+<input id='demo' type ='submit'  name='rating' value ='vote' />
+</form>
+
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script>
+$(document).ready(function(){
+   $.get('vote.php', function(data){
+        $('#test').html(data);
+       
+    });
+$('#demo').click(function(e){
+   e.preventDefault();
+   
+$.ajax({
+    url:'vote.php',
+    type:'POST',
+    data:'rating',
+    dataType:'text',
+    cache: 'false',
+    success:function(data){
+       $('#test').html(data);
+       
+       }
+     });
+   });
+});
+</script>
+</body>
+</html>
